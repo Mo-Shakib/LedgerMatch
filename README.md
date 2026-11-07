@@ -20,6 +20,20 @@ Upload two CSVs, match records by transaction reference, inspect discrepancies, 
 - Automated tests covering matching logic, ingestion, SQLite persistence, and report output.
 - Built-in synthetic sample data with known expected results.
 
+## Documentation
+
+Full project documentation is in **[docs/README.md](docs/README.md)**:
+
+| Document | Contents |
+|---|---|
+| [Product overview](docs/product-overview.md) | Problem, users, use cases, scope, and success criteria |
+| [Architecture](docs/architecture.md) | System context, components, lifecycle, design decisions, deployment, and scaling |
+| [How it works](docs/how-it-works.md) | Validation, normalization, matching precedence, metrics, and worked examples |
+| [Data reference](docs/data-reference.md) | CSV contracts, result schemas, summary keys, SQLite tables, and export formats |
+| [Implementation guide](docs/implementation-guide.md) | Integration patterns, practical opportunities, customization, and production hardening |
+| [API reference](docs/api-reference.md) | Python engine, persistence, and report APIs |
+| [Operations](docs/operations.md) | Testing, backup, monitoring, troubleshooting, and known limitations |
+
 ## Quick start
 
 Requires **Python 3.11+** (tested with Python 3.11 and Streamlit 1.67).
@@ -209,6 +223,16 @@ The tests cover:
 │   └── payment_provider_transactions.csv
 ├── tests/
 │   └── test_reconciliation.py
+├── docs/
+│   ├── README.md                  # Documentation hub
+│   ├── product-overview.md
+│   ├── architecture.md
+│   ├── how-it-works.md
+│   ├── data-reference.md
+│   ├── implementation-guide.md
+│   ├── api-reference.md
+│   ├── operations.md
+│   └── assets/                    # Interface screenshots
 ├── .streamlit/config.toml         # Theme
 ├── requirements.txt
 ├── pytest.ini
