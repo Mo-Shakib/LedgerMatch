@@ -4,6 +4,10 @@ A small, local-first reconciliation workspace for comparing a **core banking** t
 
 Upload two CSVs, match records by transaction reference, inspect discrepancies, and download CSV or Excel reports. The app ships with a realistic synthetic demo dataset so it can be evaluated without any real financial data.
 
+![LedgerMatch dashboard showing reconciliation summary metrics and report downloads](docs/assets/dashboard-summary.png)
+
+_A completed reconciliation using the built-in demo dataset._
+
 ## Features
 
 - Clean Streamlit interface with two CSV uploads.
