@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LedgerMatch — Local-first transaction reconciliation</title>
+  <meta name="description" content="Reconcile core banking and payment provider exports by reference. Review missing, duplicate, and mismatched transactions, then export audit-ready CSV and Excel reports. Runs locally.">
+  <meta name="theme-color" content="#0f766e">
+  <meta property="og:title" content="LedgerMatch — Reconcile the ledger. Resolve the exceptions.">
+  <meta property="og:description" content="A local-first reconciliation workspace for payment and finance operations.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="LedgerMatch">
+  <meta property="og:image" content="https://raw.githubusercontent.com/Mo-Shakib/LedgerMatch/main/docs/assets/dashboard-summary.png">
+  <meta property="og:image:alt" content="The LedgerMatch reconciliation dashboard showing summary metrics and discrepancy controls.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/Mo-Shakib/LedgerMatch/main/docs/assets/dashboard-summary.png">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="/" aria-label="LedgerMatch home">
+        <span class="brand-mark" aria-hidden="true">LM</span>
+        <span class="brand-name">LedgerMatch</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#control">The control</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#run">Run locally</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="nav-text" href="https://github.com/Mo-Shakib/LedgerMatch/blob/main/docs/README.md">Docs</a>
+        <a class="button button-primary button-small" href="https://github.com/Mo-Shakib/LedgerMatch">
+          GitHub
+          <svg class="icon icon-sm" viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M7.5 4.5h8v8M15.5 4.5 4.5 15.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-texture" aria-hidden="true"></div>
+      <div class="container hero-content">
+        <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Local-first reconciliation for payment operations</p>
+        <h1 id="hero-title">Reconcile the ledger.<br><span>Resolve the exceptions.</span></h1>
+        <p class="hero-lede">
+          Core banking and payment provider exports rarely agree on the first pass.
+          LedgerMatch gives operations a clear, reference-by-reference view of what
+          matched, what is missing, what duplicated, and what needs attention.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://github.com/Mo-Shakib/LedgerMatch">
+            View on GitHub
+            <svg class="icon icon-sm" viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M7.5 4.5h8v8M15.5 4.5 4.5 15.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="button button-secondary" href="#control">See the control</a>
+        </div>
+        <ul class="hero-facts" aria-label="Product highlights">
+          <li>Amount, date &amp; status checks</li>
+          <li>CSV + Excel reports</li>
+          <li>Runs on your machine</li>
+        </ul>
+      </div>
+
+      <div class="container shot-container">
+        <figure class="product-shot">
+          <div class="shot-bar" aria-hidden="true">
+            <span class="window-dots"><span></span><span></span><span></span></span>
+            <span class="shot-address">localhost:8501</span>
+            <span class="shot-tag">Demo run</span>
+          </div>
+          <a class="shot-link" href="assets/dashboard-summary.png" target="_blank" rel="noopener" aria-label="Open a full-size view of the LedgerMatch dashboard">
+            <img
+              src="assets/dashboard-summary.png"
+              alt="The LedgerMatch reconciliation dashboard showing 28 total transactions, 7 matched records, 7 discrepancies, and report download controls."
+              width="1440"
+              height="1150"
+              fetchpriority="high">
+          </a>
+          <figcaption>
+            <span>The reconciliation summary after the built-in demo run.</span>
+            <span class="caption-muted">Synthetic data only</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="spec-strip" aria-label="LedgerMatch at a glance">
+      <div class="container spec-grid">
+        <div class="spec">
+          <span class="spec-value">3</span>
+          <span class="spec-label">fields compared<br>amount, date, status</span>
+        </div>
+        <div class="spec">
+          <span class="spec-value">6</span>
+          <span class="spec-label">exception classes<br>missing, duplicate, mismatch</span>
+        </div>
+        <div class="spec">
+          <span class="spec-value">2</span>
+          <span class="spec-label">report formats<br>CSV and Excel</span>
+        </div>
+        <div class="spec">
+          <span class="spec-value">0</span>
+          <span class="spec-label">hosted uploads<br>local by default</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section control-section" id="control" aria-labelledby="control-title">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">The control surface</p>
+          <div class="heading-row">
+            <h2 id="control-title">One reference.<br>Three checks.</h2>
+            <p>
+              LedgerMatch does not guess at a match. It aligns the shared reference,
+              compares the fields that matter, and shows the difference before you
+              sign anything off.
+            </p>
+          </div>
+        </div>
+
+        <div class="control-grid">
+          <div class="review-card" role="group" aria-label="Example reconciliation review">
+            <div class="review-head">
+              <div>
+                <span class="micro-label">Reconciliation review</span>
+                <h3>Discrepancies</h3>
+              </div>
+              <span class="count-badge">7 cases</span>
+            </div>
+            <ul class="review-list">
+              <li class="review-row tone-mismatch">
+                <span class="status-chip">Mismatched</span>
+                <span class="review-ref">TXN-1045</span>
+                <span class="review-detail">Amount differs by <strong>$18.00</strong></span>
+              </li>
+              <li class="review-row tone-missing">
+                <span class="status-chip">Missing</span>
+                <span class="review-ref">TXN-1048</span>
+                <span class="review-detail">Absent from provider export</span>
+              </li>
+              <li class="review-row tone-duplicate">
+                <span class="status-chip">Duplicate</span>
+                <span class="review-ref">TXN-1052</span>
+                <span class="review-detail"><strong>2</strong> provider records</span>
+              </li>
+              <li class="review-row tone-matched">
+                <span class="status-chip">Matched</span>
+                <span class="review-ref">TXN-1042</span>
+                <span class="review-detail">Amount, date and status agree</span>
+              </li>
+            </ul>
+            <div class="review-foot">
+              <span>Built-in demo data</span>
+              <span>TXN-1045 · amount gap</span>
+            </div>
+          </div>
+
+          <div class="control-copy">
+            <p class="control-lede">
+              The review screen is built for investigation, not just reporting.
+              Search by reference, filter by exception type, and see both sides of
+              the record without opening another spreadsheet.
+            </p>
+            <ul class="check-list">
+              <li>
+                <span class="check-icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20"><path d="m4.5 10.5 3.2 3.2 7.8-7.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span><strong>Reference-first matching.</strong> Exact IDs are aligned after trimming whitespace. No fuzzy pairing hiding behind a score.</span>
+              </li>
+              <li>
+                <span class="check-icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20"><path d="m4.5 10.5 3.2 3.2 7.8-7.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span><strong>Duplicate safety.</strong> When a reference appears more than once, it is flagged for review, not silently paired.</span>
+              </li>
+              <li>
+                <span class="check-icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20"><path d="m4.5 10.5 3.2 3.2 7.8-7.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span><strong>Fail-closed validation.</strong> Missing columns or malformed values stop the run with row-level detail. No partial reconciliation.</span>
+              </li>
+              <li>
+                <span class="check-icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20"><path d="m4.5 10.5 3.2 3.2 7.8-7.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span><strong>Field-level evidence.</strong> Amount differences are signed and shown to the cent. Date and status mismatches are highlighted in place.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-rail">
+          <article class="feature">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="5.8" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m15.2 15.2 4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </span>
+            <h3>Search the exception queue</h3>
+            <p>Filter by reference, transaction ID, customer, status, or discrepancy type.</p>
+          </article>
+          <article class="feature">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 4v16M4 9h16" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            </span>
+            <h3>See both sides</h3>
+            <p>Core and provider values sit side by side, with the review note and source IDs in reach.</p>
+          </article>
+          <article class="feature">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M6 3.5h8l4 4V20.5H6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 3.5v4h4M9 13h6M9 16.5h4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </span>
+            <h3>Download the evidence</h3>
+            <p>A styled Excel workbook, a full reconciliation CSV, or just the exceptions.</p>
+          </article>
+          <article class="feature">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            </span>
+            <h3>Revisit the run</h3>
+            <p>Every completed reconciliation is stored in local SQLite history with a saved exception snapshot.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="workflow-section" id="workflow" aria-labelledby="workflow-title">
+      <div class="container">
+        <div class="workflow-head">
+          <p class="eyebrow eyebrow-light">From exports to evidence</p>
+          <h2 id="workflow-title">A short path to a clear close.</h2>
+          <p>
+            No new ledger, no data warehouse, no integration project. Start with the
+            files your teams already produce.
+          </p>
+        </div>
+        <ol class="steps">
+          <li class="step">
+            <span class="step-number">01</span>
+            <h3>Bring both exports</h3>
+            <p>Upload the core banking CSV and the payment provider CSV, or open the built-in demo to see a complete run.</p>
+          </li>
+          <li class="step">
+            <span class="step-number">02</span>
+            <h3>Read the exception queue</h3>
+            <p>Matched references are separated from the breaks. Search and filter the records that need an owner.</p>
+          </li>
+          <li class="step">
+            <span class="step-number">03</span>
+            <h3>Export the evidence</h3>
+            <p>Download the workbook or CSV, share the reviewed result, and keep the local run in SQLite history.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section local-section" id="run" aria-labelledby="run-title">
+      <div class="container local-grid">
+        <div class="local-copy">
+          <p class="eyebrow">Run it locally</p>
+          <h2 id="run-title">Your ledger data<br>stays yours.</h2>
+          <p>
+            LedgerMatch is a Python and Streamlit application, not a hosted
+            reconciliation service. Uploads are processed on your machine and run
+            history lives in a local SQLite file.
+          </p>
+          <ul class="local-list">
+            <li>No account or external data service required.</li>
+            <li>Full source, documentation, and automated tests on GitHub.</li>
+            <li>Works with the CSV exports your systems already produce.</li>
+          </ul>
+          <a class="text-link" href="https://github.com/Mo-Shakib/LedgerMatch/blob/main/docs/README.md">
+            Read the documentation
+            <svg class="icon icon-sm" viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M4 10h12M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <section class="terminal" aria-label="Local setup commands">
+          <div class="terminal-bar">
+            <span class="window-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span class="terminal-title">terminal</span>
+            <button class="copy-button" type="button" data-copy-target="#setup-command">
+              <svg class="icon icon-sm" viewBox="0 0 20 20" aria-hidden="true">
+                <rect x="7" y="7" width="8.5" height="8.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M12.5 7V5.5A1.5 1.5 0 0 0 11 4H5.5A1.5 1.5 0 0 0 4 5.5V11a1.5 1.5 0 0 0 1.5 1.5H7" fill="none" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+              <span class="copy-label">Copy</span>
+            </button>
+            <span class="sr-only" role="status" aria-live="polite" id="copy-status"></span>
+          </div>
+          <pre class="terminal-body"><code id="setup-command">git clone https://github.com/Mo-Shakib/LedgerMatch.git
+cd LedgerMatch
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+streamlit run app.py</code></pre>
+          <div class="terminal-foot">
+            <span class="terminal-dot" aria-hidden="true"></span>
+            Opens at localhost:8501
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="closing-section" aria-labelledby="closing-title">
+      <div class="container">
+        <div class="closing-card">
+          <div>
+            <p class="eyebrow">Start with the demo</p>
+            <h2 id="closing-title">Two exports.<br>One clear answer.</h2>
+          </div>
+          <div class="closing-copy">
+            <p>
+              Run the built-in sample, inspect the intentional exceptions, then
+              bring your own files. The source, documentation, and test suite are
+              ready on GitHub.
+            </p>
+            <div class="closing-actions">
+              <a class="button button-primary" href="https://github.com/Mo-Shakib/LedgerMatch">
+                Open the repository
+                <svg class="icon icon-sm" viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M7.5 4.5h8v8M15.5 4.5 4.5 15.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              <a class="button button-secondary" href="https://github.com/Mo-Shakib/LedgerMatch/blob/main/docs/README.md">Read the docs</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="brand brand-light" href="/" aria-label="LedgerMatch home">
+            <span class="brand-mark" aria-hidden="true">LM</span>
+            <span class="brand-name">LedgerMatch</span>
+          </a>
+          <p>A local-first reconciliation workspace for payment and finance operations.</p>
+        </div>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="#control">The control</a>
+          <a href="#workflow">Workflow</a>
+          <a href="#run">Run locally</a>
+          <a href="https://github.com/Mo-Shakib/LedgerMatch/blob/main/docs/README.md">Documentation</a>
+          <a href="https://github.com/Mo-Shakib/LedgerMatch">GitHub</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p>Built with Python, Pandas, Streamlit, and SQLite.</p>
+        <p class="credit">Developed by <a href="https://shakibmolla.com/" target="_blank" rel="noopener">Shakib</a></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
