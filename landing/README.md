@@ -53,7 +53,8 @@ landing/
 
 ## Design notes
 
-- Shares the app's slate-and-teal palette (`#0f172a` / `#0f766e`), light paper background, thin borders, and compact data styling.
+- Uses a warm editorial palette that extends the app: cream paper (`#f6f3ea`), deep pine (`#142821`), bottle green (`#0b6b58`), and restrained copper (`#ad5a39`).
+- Pairs a system serif display face with the app's sans-serif UI type and monospace data details.
 - Uses system fonts and inline SVG icons only; there are no external font, script, or analytics requests.
 - Responsive layouts are provided for desktop, tablet, and mobile.
 - The screenshot opens full-size when selected so it remains inspectable on small screens.

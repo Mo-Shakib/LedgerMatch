@@ -32,7 +32,7 @@
   };
 
   button.addEventListener("click", async () => {
-    const text = target.innerText.trim();
+    const text = target.textContent.trim();
 
     try {
       let copied = false;
